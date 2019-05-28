@@ -3,7 +3,7 @@ import datetime
 import pytz # timezone 
 import requests
 import os
-
+import whois
 
 
 app = Flask(__name__)
@@ -77,6 +77,19 @@ def time_post():
               
             return render_template('time.html', result=answer)
 
+@app.route('/whois', methods=['GET','POST'])
+def whois_post():
+    if request.method == 'GET':
+        return render_template('whois.html')
+    elif request.method == 'POST':
+        print(request.form['text']
+        
+        try:
+            answer = whois.whois(request.form['text'])
+            return render_template('whois.html',result=answer.text)
+        except ValueError:
+            return "Punch in a domainname. That'll work"
+            
          
 
 @app.route('/python_apps')
