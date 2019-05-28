@@ -82,7 +82,7 @@ def whois_post():
     if request.method == 'GET':
         return render_template('whois.html')
     elif request.method == 'POST':
-        print(request.form['text']
+        print(request.form['text'].split())
         
         try:
             answer = whois.whois(request.form['text'])
